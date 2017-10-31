@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<!-- Adapted from: https://v4-alpha.getbootstrap.com/getting-started/introduction/ -->
+<!-- and: https://v4-alpha.getbootstrap.com/components/forms/ -->
+
+<html lang="en">
+  
+  <head>
+    <title>Meet Eliza</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  </head>
+  
+  <body>
+
+    <div class="container p-3">
+      <nav class="nav justify-content-end nav-tabs">
+        <a class="nav-link active" href="index.html">Meet Eliza</a>
+        <a class="nav-link" href="about.html">Eliz info</a>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div class="row">
+  
+        <div class="col-md">
+          
+          <h1 class="display-3">Say Hello!!</h1>
+          <p class="lead"><a class="btn btn-outline-primary" href="about.html" role="button">Eliz info</a></p>
+          
+          <hr class="my-4">
+          
+          <h3>Make Your Guess Between 1-10</h3>
+          <form action="submit.html" method="GET">
+            <div class="form-group"><!–– Open Form To Take Guess ––>
+              <label for="user-name">Guess</label> 
+              <input type="text" class="form-control" id="user-name" name="user-name" aria-describedby="user-name-help" placeholder="Make a guess">
+            </div>
+           
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
