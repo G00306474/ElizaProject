@@ -25,10 +25,10 @@ Or http://localhost:3000
 
 ## Resources 
 This code is taken from many places and edited to make Eliza work but here are some of the main places that I used code from or learned to implement code 
-https://github.com/caser/eliza
-https://api.jquery.com/jquery.post/
-https://github.com/data-representation
-https://www.smallsurething.com/implementing-the-famous-eliza-chatbot-in-python/
-https://www.w3schools.com/js/js_ajax_intro.asp
+https://github.com/caser/eliza,
+https://api.jquery.com/jquery.post/,
+https://github.com/data-representation,
+https://www.smallsurething.com/implementing-the-famous-eliza-chatbot-in-python/,
+https://www.w3schools.com/js/js_ajax_intro.asp,
 And many different pages on https://stackoverflow.com/
 
