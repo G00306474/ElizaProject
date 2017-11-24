@@ -1,0 +1,66 @@
+ {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body{
+  background-color: lightblue;
+  font-family: "Ubuntu-Italic", "Lucida Sans", helvetica, sans;
+}
+ 
+  
+
+
+#ElizaTalks {
+    border: 1px solid #000;
+    text-align: center;
+    border-radius: 12px;
+    background-color: rgba(26, 197, 224, 0.52);
+    float: right;
+    width: auto;
+    padding:5px;
+}
+
+#UserTalks {
+    border: 1px solid #000;
+    text-align: center;
+    border-radius: 12px;
+    background-color: rgba(224, 26, 26, 0.52);
+    float: left;
+    width: auto;
+    margin-right:25px;
+    padding:5px;
+}
+
+h1 {
+    text-align:center;
+    color:black;
+}
+
+#Heading {
+    text-align:center;
+    color:green;
+    
+    background-color: lightblue;
+   
+    
+}
+
+#elizaReply {
+    position : relative;
+    bottom: 0;
+    text-align:left;
+    margin:auto auto;
+    margin-bottom:25px;
+    padding:10px;
+    background:rgba(238,130,238, 0.8);
+    height:75%;
+    width:50%;
+    border:1px solid rgb(21, 22, 22);
+    overflow: scroll; 
+    border-radius: 25px;
+}
+
