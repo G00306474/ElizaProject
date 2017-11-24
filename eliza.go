@@ -1,6 +1,6 @@
 //Student Name: Kevin Moran
 //Student Number: G00306474
-// Eliza Chat bot for college project
+//Eliza Chat bot for college project
 //code edited from https://github.com/data-representation/eliza
 package main
 
@@ -18,12 +18,15 @@ import (
 
 var user string
 
-var responses = [][]string{
+var elizaResponse = [][]string{
 	//script eliza will use to give answers
 	//checks for words n user input to give back a response to
-	//
+	// code edited from code found here https://www.smallsurething.com/implementing-the-famous-eliza-chatbot-in-python/
 	{`my name is ([^.?!]*)[.?!]?`,
-		"hi $1, how can i help",
+		"hi $1, how can i help?",
+	},
+	{`Hello Eliza([^.?!]*)[.?!]?`,
+		"What is your name?",
 	},
 
 	{`Hello([^.?!]*)[.?!]?`,
@@ -75,7 +78,8 @@ var responses = [][]string{
 		"Do you think it is $1??",
 		"Perhaps it's $1? -- what do you think?",
 		"If it were $1?, what would you do?",
-		"It could well be that $1?."},
+		"It could well be $1?."},
+	//removed "that" from line above to make sound more human
 
 	{`It is ([^.?!]*)[.?!]?`,
 		"You seem very certain.",
@@ -146,10 +150,10 @@ var responses = [][]string{
 		"Do you want to $1??"},
 
 	{`I feel ([^.?!]*)[.?!]?`,
-		"Good, tell me more about these feelings.",
+		"Is there a reason you feel $1?",
 		"Do you often feel $1??",
 		"When do you usually feel $1??",
-		"When you feel $1?, what do you do?"},
+		"When you feel $1? what do you do?"},
 
 	{`I have ([^.?!]*)[.?!]?`,
 		"Why do you tell me that you've $1??",
@@ -239,9 +243,9 @@ func templateHandler(w http.ResponseWriter, r *http.Request) { //Handle Http req
 
 func responseFromEliza(usersAnswer string) string {
 
-	var counter int
+	var count int
 
-	for _, h := range responses {
+	for _, h := range elizaResponse {
 		row := 0
 		for {
 			row = rand.Intn(len(h)) //Find the length of the current row, Used for random row
@@ -249,18 +253,17 @@ func responseFromEliza(usersAnswer string) string {
 				break
 			}
 		}
-		re := regexp.MustCompile("(?i)" + responses[counter][0]) //Read the find index in the row - for the question
+		re := regexp.MustCompile("(?i)" + elizaResponse[count][0]) //Read the find index in the row - for the question
 
 		if matched := re.MatchString(usersAnswer); matched { //Compare question with the users input
-			return re.ReplaceAllString(usersAnswer, responses[counter][row]) //Replace the question with the answer for output
+			return re.ReplaceAllString(usersAnswer, elizaResponse[count][row]) //Replace the question with the answer for output
 
 		}
-		counter++ //Increment the index
+		count++ //Increment the index
 	}
 
 	//Comes here if loop fails
-	//chooses one of the  random answeres
-
+	//chooses one of the  answers randomly
 	answers := []string{
 		"I’m not sure what you’re trying to say. Could you explain it to me?",
 		"How does that make you feel?",
@@ -275,15 +278,16 @@ func responseFromEliza(usersAnswer string) string {
 		"How do you feel when you say that?",
 	}
 
-	return answers[rand.Intn(len(answers))]
+	return answers[rand.Intn(len(answers))] //returns answer
 
 }
 
+//Posts the user input to screen
 func receiveAjax(w http.ResponseWriter, r *http.Request) {
 
-	if r.Method == "POST" { //Post the users input
+	if r.Method == "POST" {
 
-		Q := r.FormValue("Question") //Get the value from the input field
+		Q := r.FormValue("Question")
 
 		fmt.Fprintf(w, responseFromEliza(Q))
 
@@ -336,5 +340,5 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir("./"))) //Handle http request
 	http.HandleFunc("/chat", templateHandler)         //handle requests for templates
 	http.HandleFunc("/ajax", receiveAjax)             //handle requests for Ajax
-	http.ListenAndServe(":8080", nil)                 //Listen and report from port 8080
+	http.ListenAndServe(":3000", nil)                 //Listen and report from port 8080
 }
