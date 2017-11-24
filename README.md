@@ -17,6 +17,6 @@ Visit http://127.0.0.1:8080.
 
 
 ## Example Commands 
-![Screen capture of Eliza](/images/Screenshot (1).png?raw=true "Screen Capture of Eliza")
+![Eliza]( ElizaProject/images/Screenshot (1).png?raw=true "Screen Capture of Eliza")
 
- 
+
