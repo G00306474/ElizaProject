@@ -12,13 +12,16 @@ import (
 	"regexp"
 	"strings"
 	"time"
-	//"bufio" in not used has to be commented out or get error on build
+	//"bufio" import not used has to be commented out or get error on build
 	"text/template"
 )
 
 var user string
 
 var responses = [][]string{
+	//script eliza will use to give answers
+	//checks for words n user input to give back a response to
+	//
 	{`my name is ([^.?!]*)[.?!]?`,
 		"hi $1, how can i help",
 	},
@@ -257,7 +260,7 @@ func responseFromEliza(usersAnswer string) string {
 
 	//Comes here if loop fails
 	//chooses one of the  random answeres
-	//uses time import
+
 	answers := []string{
 		"I’m not sure what you’re trying to say. Could you explain it to me?",
 		"How does that make you feel?",
@@ -288,11 +291,14 @@ func receiveAjax(w http.ResponseWriter, r *http.Request) {
 }
 
 func Reflect(input string) string {
-	// Split the input on word boundaries.
+	// Split the input on word boundaries
+
 	boundaries := regexp.MustCompile(`\b`)
 	tokens := boundaries.Split(input, -1)
 
 	// List the reflections.
+	//reflections taken from
+	//https://www.smallsurething.com/implementing-the-famous-eliza-chatbot-in-python/
 	reflections := [][]string{
 		{`I`, `you`},
 		{`me`, `you`},
@@ -300,6 +306,14 @@ func Reflect(input string) string {
 		{`my`, `your`},
 		{`your`, `my`},
 		{`Are`, `Am`},
+		{`was`, `were`},
+		{`i'd`, `you would`},
+		{`i've`, `you have`},
+		{`i'll`, `you will`},
+		{`you've`, `I have`},
+		{`you'll`, `I will`},
+		{`yours`, `mine`},
+		{``, ``},
 	}
 
 	// Loop through each token, reflecting it if there's a match.
@@ -321,6 +335,6 @@ func main() {
 
 	http.Handle("/", http.FileServer(http.Dir("./"))) //Handle http request
 	http.HandleFunc("/chat", templateHandler)         //handle requests for templates
-	http.HandleFunc("/ajax", receiveAjax)
-	http.ListenAndServe(":8080", nil) //Listen and report from port 8080
+	http.HandleFunc("/ajax", receiveAjax)             //handle requests for Ajax
+	http.ListenAndServe(":8080", nil)                 //Listen and report from port 8080
 }
