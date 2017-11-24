@@ -10,10 +10,10 @@ Clone this repository using Git.
 Change into the folder.  
  >cd ElizaProject  
 Compile the web application with the following command.  
- >go build elizaStart.go  
+ >go build eliza.go  
 Run the executable produced.  
  >elizaStart.exe  
-Visit http://127.0.0.1:8080. Type your name in the text box, and click Submit.  
+Visit http://127.0.0.1:8080.   
 
 
 ## Example Commands 
